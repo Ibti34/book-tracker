@@ -1,0 +1,641 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  color: #444;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   HEADER & NAVBAR
+========================= */
+header {
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-left: 10px;
+  color: #3a6d8f;
+}
+
+/* Pill Navigation */
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-links a {
+  padding: 10px 22px;
+  background: #7ca6c5;
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(124,166,197,0.3);
+}
+
+.nav-links a:hover {
+  background: #6791b6;
+  transform: translateY(-2px);
+}
+
+.nav-links a.active {
+  background: #2e4b61;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+  background: linear-gradient(135deg, #8eaec9 0%, #a8c0d8 100%);
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  color: #f2f1f5;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin: 1.5rem auto 2.5rem;
+  max-width: 600px;
+  color: #ccd0d6;
+}
+
+/* CTA BUTTON (GLOBAL) */
+.cta-button {
+  background: #7ca6c5;
+  color: #fff;
+  padding: 0.85rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(124,166,197,0.6);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #6791b6;
+  box-shadow: 0 6px 20px rgba(103,145,182,0.8);
+}
+
+/* =========================
+   FEATURES
+========================= */
+.features {
+  padding: 70px 20px;
+  background: white;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.feature-card {
+  background: #ecf0f1;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   PAGE CONTENT
+========================= */
+.page-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #1f3c88;
+}
+
+.page-text {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+.contact-form {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: #1f3c88;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1f3c88;
+  box-shadow: 0 0 0 3px rgba(31,60,136,0.15);
+}
+
+/* =========================
+   SERVICES PAGE (NEW UI)
+========================= */
+.services-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.services-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #2e4b61;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.service-card {
+  background: #f3f6f9;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.service-card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background-color: #3a6d8f;
+  color: #d6dde6;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.8rem;
+  margin-top: auto;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
+.bg-gray-100 {
+  background-color: #f0f4f8 !important;
+}
+
+.services-section {
+  padding: 80px 20px;
+  background-color: #f0f4f8;
+}
+
+.services-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #2e3b4e;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1f3c88;
+}
+
+.service-card p {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+
+
+.about-section {
+  padding: 80px 20px;
+  background-color: #f0f4f8;
+}
+
+.about-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 50px 45px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.about-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #1f3c88;
+}
+
+.about-card p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+
+/* Page container */
+.contact-container {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px;
+    background: #f4f6f8;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.contact-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1f3b4d;
+}
+
+/* Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form label {
+    font-weight: 600;
+    color: #1f3b4d;
+}
+
+/* Inputs */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Button */
+.contact-form button {
+    background: #415a6b;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #2f4454;
+}
+
+
+/* ===== GLOBAL BUTTON STYLE ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* ===== PRIMARY BLUE BUTTON ===== */
+/* ===== SAVE BOOK BUTTON (CLEAN & SOFT BLUE) ===== */
+.btn-primary {
+  background-color: #86abfa; /* clean blue */
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #7193f0;
+}
+
+
+/* ===== SOFT BLUE BUTTON (SECOND IMAGE STYLE) ===== */
+.btn-soft {
+    background-color: #e0edff;
+    color: #1e40af;
+}
+
+.btn-soft:hover {
+    background-color: #c7ddff;
+}
+
+/* ===== DANGER (DELETE) – STILL SIMPLE ===== */
+/* ===== DELETE BUTTON (CALM & SIMPLE) ===== */
+.btn-danger {
+  background-color: #64748b; /* soft blue-gray */
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #475569;
+}
+
+/* ===== TABLE BUTTON FIX ===== */
+.table-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* =========================
+   HOME PAGE (Hero Section)
+========================= */
+
+.hero {
+  background-image: url('../images/img.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* CTA Buttons */
+.cta-button {
+  background-color: #850606;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: #631c1c;
+}
+
+
+/* =========================
+   NAVBAR STYLES
+========================= */
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LEFT SIDE */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* LOGO */
+.nav-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f2937;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+/* LINKS */
+.nav-link {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* RIGHT SIDE */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* USER NAME */
+.nav-user {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* BUTTON STYLE LINKS */
+.nav-btn {
+    background-color: #850606;
+    color: #ffffff !important;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+.nav-btn:hover {
+    background-color: #631c1c;
+}
+
+/* LOGOUT BUTTON FIX */
+.nav-right form {
+    margin: 0;
+}
+
+.nav-right button {
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+
+/* CENTER NAV FIX */
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* USER NAME WRAP FIX */
+.nav-user {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+

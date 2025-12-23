@@ -11,12 +11,22 @@ class BookController extends Controller
     {
         $query = Book::query();
 
+        // SEARCH
         if ($request->search) {
             $query->where('title', 'like', '%' . $request->search . '%')
                 ->orWhere('author', 'like', '%' . $request->search . '%');
         }
 
-        $books = $query->orderBy('created_at', 'desc')->paginate(5);
+        // SORT
+        if ($request->sort == 'az') {
+            $query->orderBy('title', 'asc');
+        } elseif ($request->sort == 'za') {
+            $query->orderBy('title', 'desc');
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $books = $query->paginate(5);
 
         return view('books.index', compact('books'));
     }
@@ -29,17 +39,24 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'author' => 'required',
+            'title'  => 'required|string|max:255',
+            'author' => 'required|string|max:255',
         ]);
 
-        Book::create($request->all());
+        $book = Book::create([
+            'title'  => $request->title,
+            'author' => $request->author,
+        ]);
 
         return redirect()
             ->route('books.index')
-            ->with('success', '📘 Book added successfully!');
+            ->with([
+                'success'   => '📘 Book added successfully!',
+                'highlight' => $book->id,
+            ]);
     }
 
+    // ✅ THIS WAS MISSING
     public function edit(Book $book)
     {
         return view('books.edit', compact('book'));
@@ -47,16 +64,19 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        $request->validate([
-            'title' => 'required',
-            'author' => 'required',
+        $validated = $request->validate([
+            'title'  => 'required|string|max:255',
+            'author' => 'required|string|max:255',
         ]);
 
-        $book->update($request->all());
+        $book->update($validated);
 
         return redirect()
             ->route('books.index')
-            ->with('success', '✏️ Book updated successfully!');
+            ->with([
+                'success'   => '✏️ Book updated successfully!',
+                'highlight' => $book->id,
+            ]);
     }
 
     public function destroy(Book $book)
@@ -66,5 +86,12 @@ class BookController extends Controller
         return redirect()
             ->route('books.index')
             ->with('success', '🗑️ Book deleted successfully!');
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard', [
+            'totalBooks' => Book::count()
+        ]);
     }
 }
