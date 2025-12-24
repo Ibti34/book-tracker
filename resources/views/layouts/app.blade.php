@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body class="font-sans antialiased">
+<body>
 
-<div class="min-h-screen">
+
+<div>
+
 
     <!-- NAVBAR -->
     @include('layouts.navigation')
