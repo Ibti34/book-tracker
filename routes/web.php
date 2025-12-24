@@ -32,3 +32,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+Route::view('/contact', 'contact')->name('contact');
+
+Route::post('/contact', function () {
+    return back()->with('success', 'Message sent successfully!');
+})->name('contact.submit');

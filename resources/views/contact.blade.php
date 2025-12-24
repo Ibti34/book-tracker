@@ -4,7 +4,14 @@
 <div class="contact-container">
     <h1>Contact Us</h1>
 
-    <form class="contact-form" method="POST" action="#">
+    @if(session('success'))
+    <p style="color: green;">
+        {{ session('success') }}
+    </p>
+@endif
+
+<form class="contact-form" method="POST" action="{{ route('contact.submit') }}">
+
         @csrf
 
         <div>
