@@ -5,7 +5,7 @@
         <div class="nav-left">
             <a href="{{ route('home') }}" class="nav-logo">BookTrackr</a>
 
-            {{-- PUBLIC NAV (ONLY ON PUBLIC PAGES) --}}
+            {{-- PUBLIC NAV --}}
             @guest
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                 <a href="{{ route('about') }}" class="nav-link">About</a>
@@ -14,7 +14,7 @@
             @endguest
         </div>
 
-        {{-- APP NAV (ONLY AFTER LOGIN) --}}
+        {{-- APP NAV --}}
         @auth
             <div class="nav-center">
                 <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
@@ -25,19 +25,26 @@
 
         {{-- RIGHT SIDE --}}
         <div class="nav-right">
+
+            {{-- GUEST: profile icon → login --}}
             @guest
-                <a href="{{ route('login') }}" class="nav-link">Login</a>
-                <a href="{{ route('register') }}" class="nav-link nav-btn">Register</a>
+                <a href="{{ route('login') }}" class="nav-profile">
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile">
+                </a>
             @endguest
 
+            {{-- AUTH: profile icon → dashboard --}}
             @auth
-                <span class="nav-user">{{ Auth::user()->name }}</span>
+                <a href="{{ route('dashboard') }}" class="nav-profile">
+                    <img src="{{ asset('images/profile.png') }}" alt="Profile">
+                </a>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="nav-link nav-btn">Logout</button>
                 </form>
             @endauth
+
         </div>
 
     </div>
