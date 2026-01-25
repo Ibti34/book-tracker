@@ -57,27 +57,50 @@
     <table class="w-full border rounded">
         <thead class="bg-gray-200">
             <tr>
+                <th class="p-2 border">Cover</th>
                 <th class="p-2 border">Title</th>
                 <th class="p-2 border">Author</th>
+                <th class="p-2 border">Status</th>
+                <th class="p-2 border">Progress</th>
+                <th class="p-2 border">Rating</th>
                 <th class="p-2 border">Actions</th>
             </tr>
         </thead>
 
         <tbody>
         @forelse ($books as $book)
+            @php
+                $progress = 0;
+                if ($book->pages && $book->current_page) {
+                    $progress = (int) min(100, round(($book->current_page / $book->pages) * 100));
+                }
+            @endphp
             <tr class="hover:bg-gray-50 {{ session('highlight') == $book->id ? 'bg-green-100' : '' }}">
+                <td class="p-2 border w-24">
+                    @if($book->cover_path)
+                        <img src="{{ asset('storage/' . $book->cover_path) }}" alt="cover" class="w-16 h-20 object-cover">
+                    @else
+                        <div class="w-16 h-20 bg-gray-100 flex items-center justify-center text-sm text-gray-400">No image</div>
+                    @endif
+                </td>
+
                 <td class="p-2 border">{{ $book->title }}</td>
                 <td class="p-2 border">{{ $book->author }}</td>
+                <td class="p-2 border">{{ $book->status ?? '—' }}</td>
+                <td class="p-2 border w-48">
+                    <div class="w-full bg-gray-200 rounded h-3">
+                        <div class="bg-blue-600 h-3 rounded" style="width: {{ $progress }}%"></div>
+                    </div>
+                    <div class="text-sm text-gray-600">{{ $progress }}%</div>
+                </td>
+                <td class="p-2 border">{{ $book->rating ? $book->rating . ' ★' : '—' }}</td>
 
                 <td class="p-2 border">
                     <div class="table-actions">
-                        <!-- EDIT -->
-                        <a href="{{ route('books.edit', $book) }}" class="btn btn-soft">
-                            ✏️ Edit
-                        </a>
+                        <a href="{{ route('books.show', $book) }}" class="btn btn-soft">🔍 View</a>
+                        <a href="{{ route('books.edit', $book) }}" class="btn btn-soft">✏️ Edit</a>
 
-                        <!-- DELETE -->
-                        <form method="POST" action="{{ route('books.destroy', $book) }}">
+                        <form method="POST" action="{{ route('books.destroy', $book) }}" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <button
@@ -93,9 +116,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="3" class="text-center p-4 text-gray-500">
-                    No books found.
-                </td>
+                <td colspan="7" class="text-center p-4 text-gray-500">No books found.</td>
             </tr>
         @endforelse
         </tbody>

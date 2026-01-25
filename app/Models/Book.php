@@ -11,5 +11,14 @@ class Book extends Model
         'author',
         'year',
         'description',
+        'status',
+        'pages',
+        'current_page',
+        'rating',
+        'cover_path',
+        'notes',
+        'priority',
+        'read_date',
+        'tags',
     ];
 }

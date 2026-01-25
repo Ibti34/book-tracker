@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Book</title>
-</head>
 @extends('layouts.app')
 
 @section('content')
@@ -10,8 +5,19 @@
 
     <h1 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">➕ Add Book</h1>
 
-    <form method="POST" action="{{ route('books.store') }}">
+    <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         @csrf
+
+        @if ($errors->any())
+            <div class="mb-4 bg-red-100 text-red-800 px-4 py-2 rounded">
+                <strong>There were some problems with your input:</strong>
+                <ul class="mt-2 list-disc list-inside text-sm">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <!-- TITLE -->
         <div class="mb-4">
@@ -24,11 +30,8 @@
                        @error('title') border-red-500 @enderror"
             >
             @error('title')
-    <p class="text-red-600 text-sm mt-1">
-        {{ $message }}
-    </p>
-@enderror
-
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- AUTHOR -->
@@ -40,15 +43,51 @@
                 value="{{ old('author') }}"
                 class="w-full px-3 py-2 border rounded text-black
                        @error('author') border-red-500 @enderror"
-    
             >
-           @error('author')
-    <p class="text-red-600 text-sm mt-1">
-        {{ $message }}
-    </p>
-@enderror
+            @error('author')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
 
+        <!-- YEAR -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Year</label>
+            <input type="number" name="year" value="{{ old('year') }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
 
+        <!-- PAGES -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Pages</label>
+            <input type="number" name="pages" value="{{ old('pages') }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
+
+        <!-- CURRENT PAGE -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Current Page</label>
+            <input type="number" name="current_page" value="{{ old('current_page') }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
+
+        <!-- RATING -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Rating</label>
+            <select name="rating" class="w-full px-3 py-2 border rounded text-black">
+                <option value="">—</option>
+                @for($i=1;$i<=5;$i++)
+                    <option value="{{ $i }}" {{ old('rating') == $i ? 'selected' : '' }}>{{ $i }} star{{ $i>1 ? 's' : '' }}</option>
+                @endfor
+            </select>
+        </div>
+
+        <!-- COVER -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Cover Image</label>
+            <input type="file" name="cover" accept="image/*" class="w-full">
+        </div>
+
+        <!-- NOTES -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Notes</label>
+            <textarea name="notes" class="w-full px-3 py-2 border rounded text-black">{{ old('notes') }}</textarea>
         </div>
 
         <!-- SAVE BUTTON -->
@@ -65,12 +104,8 @@
         >
             Cancel
         </a>
+
     </form>
 
 </div>
 @endsection
-
-
-
-</body>
-</html>

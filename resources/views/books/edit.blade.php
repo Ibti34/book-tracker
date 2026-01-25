@@ -13,7 +13,7 @@
 
     <h1 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">✏️ Edit Book</h1>
 
-    <form method="POST" action="{{ route('books.update', $book) }}">
+    <form method="POST" action="{{ route('books.update', $book) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -51,6 +51,52 @@
     </p>
 @enderror
 
+        </div>
+
+        <!-- YEAR -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Year</label>
+            <input type="number" name="year" value="{{ old('year', $book->year) }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
+
+        <!-- PAGES -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Pages</label>
+            <input type="number" name="pages" value="{{ old('pages', $book->pages) }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
+
+        <!-- CURRENT PAGE -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Current Page</label>
+            <input type="number" name="current_page" value="{{ old('current_page', $book->current_page) }}" class="w-full px-3 py-2 border rounded text-black">
+        </div>
+
+        <!-- RATING -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Rating</label>
+            <select name="rating" class="w-full px-3 py-2 border rounded text-black">
+                <option value="">—</option>
+                @for($i=1;$i<=5;$i++)
+                    <option value="{{ $i }}" {{ old('rating', $book->rating) == $i ? 'selected' : '' }}>{{ $i }} star{{ $i>1 ? 's' : '' }}</option>
+                @endfor
+            </select>
+        </div>
+
+        <!-- COVER -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Cover Image</label>
+            @if($book->cover_path)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $book->cover_path) }}" alt="cover" class="w-24 h-32 object-cover">
+                </div>
+            @endif
+            <input type="file" name="cover" accept="image/*" class="w-full">
+        </div>
+
+        <!-- NOTES -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300">Notes</label>
+            <textarea name="notes" class="w-full px-3 py-2 border rounded text-black">{{ old('notes', $book->notes) }}</textarea>
         </div>
 
         <!-- UPDATE BUTTON -->
