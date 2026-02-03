@@ -34,7 +34,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer">
-    © {{ date('Y') }} BookTrackr. All rights reserved.
+    © {{ date('Y') }} BookTracker. All rights reserved.
 </footer>
 
 </body>

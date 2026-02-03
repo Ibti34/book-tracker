@@ -6,7 +6,7 @@
 <section class="hero">
   <div class="hero-overlay">
     <div class="hero-content">
-      <h2>Welcome to BookTrackr</h2>
+      <h2>Welcome to BookTracker</h2>
 
       <p>
         Track your reading, manage book lists, and discover new favorites — all in one place.
@@ -25,7 +25,7 @@
 <!-- Features -->
 <section class="features">
   <div class="container">
-    <h3>Why Choose BookTrackr?</h3>
+    <h3>Why Choose BookTracker?</h3>
 
     <div class="features-grid">
       <div class="feature-card">
@@ -39,7 +39,7 @@
 </section>
 
 <footer class="text-center py-6">
-  &copy; 2025 BookTrackr
+  &copy; 2025 BookTracker
 </footer>
 
 @endsection

@@ -3,7 +3,7 @@
 
         {{-- LOGO --}}
         <div class="nav-left">
-            <a href="{{ route('home') }}" class="nav-logo">BookTrackr</a>
+            <a href="{{ route('home') }}" class="nav-logo">BookTracker</a>
 
             {{-- PUBLIC NAV --}}
             @guest
