@@ -1,9 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Force Progress Bar to Green */
+    .custom-progress-bg {
+        background-color: #22c55e !important; /* Green */
+    }
+    /* Force Star to Yellow */
+    .custom-star-color {
+        color: #facc15 !important; /* Yellow */
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+</style>
+
 <div class="p-6">
 
-    <!-- HEADER -->
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold text-gray-800">📚 Book List</h1>
 
@@ -12,7 +24,6 @@
         </a>
     </div>
 
-    <!-- SEARCH -->
     <form method="GET" action="{{ route('books.index') }}" class="flex items-center gap-2 mb-4">
         <input
             type="text"
@@ -33,14 +44,12 @@
         @endif
     </form>
 
-    <!-- SUCCESS MESSAGE -->
     @if (session('success'))
         <div class="mb-4 bg-green-100 text-green-800 px-4 py-2 rounded">
             {{ session('success') }}
         </div>
     @endif
 
-    <!-- SORT BUTTONS -->
     <div class="flex gap-2 mb-4">
         <a href="{{ route('books.index', array_merge(request()->all(), ['sort' => 'az'])) }}"
            class="btn btn-soft">
@@ -53,7 +62,6 @@
         </a>
     </div>
 
-    <!-- TABLE -->
     <table class="w-full border rounded">
         <thead class="bg-gray-200">
             <tr>
@@ -89,11 +97,17 @@
                 <td class="p-2 border">{{ $book->status ?? '—' }}</td>
                 <td class="p-2 border w-48">
                     <div class="w-full bg-gray-200 rounded h-3">
-                        <div class="bg-blue-600 h-3 rounded" style="width: {{ $progress }}%"></div>
+                        <div class="custom-progress-bg h-3 rounded" style="width: {{ $progress }}%"></div>
                     </div>
                     <div class="text-sm text-gray-600">{{ $progress }}%</div>
                 </td>
-                <td class="p-2 border">{{ $book->rating ? $book->rating . ' ★' : '—' }}</td>
+                <td class="p-2 border">
+                    @if($book->rating)
+                        {{ $book->rating }} <span class="custom-star-color">★</span>
+                    @else
+                        —
+                    @endif
+                </td>
 
                 <td class="p-2 border">
                     <div class="table-actions">
@@ -122,7 +136,6 @@
         </tbody>
     </table>
 
-    <!-- PAGINATION -->
     <div class="mt-4">
         {{ $books->withQueryString()->links() }}
     </div>
