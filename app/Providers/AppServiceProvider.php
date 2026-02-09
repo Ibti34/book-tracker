@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,9 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // This forces all asset() and @vite links to use HTTPS in production
-        if (config('app.env') !== 'local') {
-            URL::forceScheme('https');
-        }
+        //
     }
 }
