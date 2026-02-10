@@ -12,15 +12,11 @@
     <!-- Laravel Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Your custom styles -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
-
-
-<div>
-
 
     <!-- NAVBAR -->
     @include('layouts.navigation')
@@ -30,12 +26,10 @@
         @yield('content')
     </main>
 
-</div>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    © {{ date('Y') }} BookTracker. All rights reserved.
-</footer>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        © {{ date('Y') }} BookTracker. All rights reserved.
+    </footer>
 
 </body>
 </html>

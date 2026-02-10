@@ -1,3 +1,6 @@
-@tailwind base;
+
 @tailwind components;
 @tailwind utilities;
+
+/* ✅ your custom CSS lives here */
+@import "./custom.css";
